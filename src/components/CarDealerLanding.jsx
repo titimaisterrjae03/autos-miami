@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../supabase';
-import { Search, Phone, Calendar, MapPin, X, CheckCircle, Star, BadgeCheck, Car, Gauge, DollarSign, LogIn } from 'lucide-react';
+import { Search, Phone, Calendar, MapPin, X, CheckCircle, Star, BadgeCheck, Car, Gauge, DollarSign, LogIn, Shield, MessageCircle, Check, Clock } from 'lucide-react';
 // Admin panel is now on a separate route /carAdmin
 
 const CarDealerLanding = () => {
@@ -76,70 +76,111 @@ const CarDealerLanding = () => {
 
 
     return (
-        <div className="min-h-screen bg-gray-50 font-sans text-gray-900">
+        <div className="min-h-screen bg-slate-900 font-sans text-white">
             {/* HEADER */}
-            <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm shadow-md border-b border-gray-100">
+            <header className="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-sm shadow-md border-b border-slate-800">
                 <div className="container mx-auto px-4 py-4 flex justify-between items-center">
                     <div className="flex items-center space-x-2 cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-                        <Car className="text-blue-900 w-8 h-8" />
-                        <h1 className="text-2xl font-bold tracking-tight text-blue-900">MIAMI<span className="text-blue-600">AUTO</span></h1>
+                        <Car className="text-yellow-400 w-8 h-8" />
+                        <h1 className="text-2xl md:text-3xl font-extrabold tracking-tight">
+                            <span className="text-white">AutoFácil</span>
+                            <span className="text-yellow-400 font-light ml-2">Miami</span>
+                        </h1>
                     </div>
 
-                    <nav className="hidden md:flex space-x-8 text-gray-600 font-medium">
-                        <button onClick={() => document.getElementById('inventory').scrollIntoView({ behavior: 'smooth' })} className="hover:text-blue-900 transition-colors">Inventario</button>
-                        <button onClick={() => document.getElementById('about').scrollIntoView({ behavior: 'smooth' })} className="hover:text-blue-900 transition-colors">Nosotros</button>
-                        <button onClick={() => document.getElementById('testimonials').scrollIntoView({ behavior: 'smooth' })} className="hover:text-blue-900 transition-colors">Comentarios</button>
-                        <button onClick={() => document.getElementById('faq').scrollIntoView({ behavior: 'smooth' })} className="hover:text-blue-900 transition-colors">Preguntas</button>
+                    <nav className="hidden md:flex space-x-8 text-gray-300 font-medium">
+                        <button onClick={() => document.getElementById('inventory').scrollIntoView({ behavior: 'smooth' })} className="hover:text-yellow-400 transition-colors">Inventario</button>
+                        <button onClick={() => document.getElementById('about').scrollIntoView({ behavior: 'smooth' })} className="hover:text-yellow-400 transition-colors">Nosotros</button>
+                        <button onClick={() => document.getElementById('testimonials').scrollIntoView({ behavior: 'smooth' })} className="hover:text-yellow-400 transition-colors">Comentarios</button>
+                        <button onClick={() => document.getElementById('faq').scrollIntoView({ behavior: 'smooth' })} className="hover:text-yellow-400 transition-colors">Preguntas</button>
                     </nav>
 
                     <div className="flex items-center space-x-4">
                         <button
                             onClick={() => handleWhatsAppClick(null)}
-                            className="flex items-center space-x-2 bg-green-500 hover:bg-green-600 text-white px-5 py-2.5 rounded-full font-semibold transition-all transform hover:scale-105 shadow-lg"
+                            className="flex items-center space-x-2 bg-green-500 hover:bg-green-600 text-white px-4 md:px-5 py-2.5 rounded-full font-bold transition-all transform hover:scale-105 shadow-lg"
                         >
                             <Phone className="w-5 h-5" />
-                            <span className="hidden sm:inline">Agendar Cita</span>
-                            <span className="sm:hidden">Cita</span>
+                            <span className="hidden sm:inline">WhatsApp Directo</span>
+                            <span className="sm:hidden">WhatsApp</span>
                         </button>
                     </div>
                 </div>
             </header>
 
             {/* HERO SECTION */}
-            <section className="relative bg-blue-900 text-white overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-900 to-transparent z-10 opacity-90"></div>
-                <div
-                    className="absolute inset-0 bg-cover bg-center"
-                    style={{ backgroundImage: "url('https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&q=80&w=1920')" }}
-                ></div>
+            <section className="relative bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-white overflow-hidden">
+                <div className="absolute inset-0 opacity-10">
+                    <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1514316454349-750a7fd3da3a?auto=format&fit=crop&q=80')" }}></div>
+                </div>
 
-                <div className="container mx-auto px-4 py-20 relative z-20">
-                    <div className="max-w-2xl">
-                        <div className="flex items-center space-x-2 bg-blue-800/50 w-fit px-3 py-1 rounded-full text-sm font-medium mb-4 border border-blue-400/30">
-                            <BadgeCheck className="w-4 h-4 text-blue-300" />
-                            <span>Aprobación Garantizada</span>
+                <div className="container mx-auto px-4 py-16 md:py-24 relative z-20">
+                    <div className="max-w-3xl mx-auto text-center">
+                        {/* Social Proof Badge */}
+                        <div className="inline-flex items-center gap-2 bg-slate-800/50 border border-yellow-400/30 px-4 py-2 rounded-full mb-6 backdrop-blur-sm">
+                            <Shield className="w-4 h-4 text-yellow-400" />
+                            <span className="text-sm font-semibold text-yellow-400">Aprobación garantizada con Pasaporte</span>
                         </div>
-                        {/* Dynamic Hero Title */}
+
+                        {/* Main Headline */}
                         {(!siteConfig || siteConfig.show_hero_title) && (
-                            <h2 className="text-4xl md:text-6xl font-extrabold leading-tight mb-6 tracking-tight whitespace-pre-line">
+                            <h2 className="text-5xl md:text-7xl font-black mb-6 leading-tight">
                                 {siteConfig?.hero_title || (
-                                    <>Tu Auto en Miami Hoy. <br /><span className="text-blue-300">Solo con Pasaporte.</span></>
+                                    <>¡MÓNTATE<span className="block text-yellow-400 mt-2">HOY MISMO!</span></>
                                 )}
                             </h2>
                         )}
 
-                        {/* Dynamic Hero Slogan */}
+                        {/* Subheadline */}
                         {(!siteConfig || siteConfig.show_hero_slogan) && (
-                            <p className="text-xl text-blue-100 mb-8 font-light whitespace-pre-line">
-                                {siteConfig?.hero_slogan || "Sin crédito, sin social security. Sal manejando el mismo día con las iniciales más bajas del mercado. Trato rápido y transparente."}
+                            <p className="text-xl md:text-2xl text-gray-300 mb-8 font-light whitespace-pre-line">
+                                {siteConfig?.hero_slogan || (
+                                    <>Tu carro financiado con Down Payment desde <span className="text-yellow-400 font-bold">$999</span></>
+                                )}
                             </p>
                         )}
+
+                        {/* CTA Button */}
                         <button
                             onClick={() => document.getElementById('inventory').scrollIntoView({ behavior: 'smooth' })}
-                            className="bg-white text-blue-900 px-8 py-4 rounded-xl font-bold text-lg shadow-xl hover:bg-gray-100 transition-colors"
+                            className="bg-yellow-500 hover:bg-yellow-400 text-black px-10 py-5 rounded-xl font-black text-xl shadow-2xl transition-all transform hover:scale-105 hover:shadow-yellow-500/50"
                         >
-                            Ver Inventario Disponible
+                            VER INVENTARIO
                         </button>
+                    </div>
+                </div>
+            </section>
+
+            {/* VALUE PROPOSITION */}
+            <section className="py-16 bg-slate-800">
+                <div className="container mx-auto px-4">
+                    <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                        {/* Feature 1 */}
+                        <div className="text-center p-6 bg-slate-900/50 rounded-2xl border border-slate-700 hover:border-yellow-400/50 transition-all">
+                            <div className="w-16 h-16 bg-yellow-400/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <Check className="w-8 h-8 text-yellow-400" />
+                            </div>
+                            <h3 className="text-xl font-bold mb-2 text-white">Aprobación Rápida</h3>
+                            <p className="text-gray-400">No necesitas SSN. Solo tu pasaporte y listo.</p>
+                        </div>
+
+                        {/* Feature 2 */}
+                        <div className="text-center p-6 bg-slate-900/50 rounded-2xl border border-slate-700 hover:border-yellow-400/50 transition-all">
+                            <div className="w-16 h-16 bg-yellow-400/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <DollarSign className="w-8 h-8 text-yellow-400" />
+                            </div>
+                            <h3 className="text-xl font-bold mb-2 text-white">Inicial Baja</h3>
+                            <p className="text-gray-400">Desde $999. Las mejores condiciones del mercado.</p>
+                        </div>
+
+                        {/* Feature 3 */}
+                        <div className="text-center p-6 bg-slate-900/50 rounded-2xl border border-slate-700 hover:border-yellow-400/50 transition-all">
+                            <div className="w-16 h-16 bg-yellow-400/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <Clock className="w-8 h-8 text-yellow-400" />
+                            </div>
+                            <h3 className="text-xl font-bold mb-2 text-white">Entrega Inmediata</h3>
+                            <p className="text-gray-400">Sales manejando en 2 horas o menos.</p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -161,8 +202,8 @@ const CarDealerLanding = () => {
 
                 <div className="flex justify-between items-end mb-8">
                     <div>
-                        <h3 className="text-3xl font-bold text-gray-900">Inventario Reciente</h3>
-                        <p className="text-gray-500 mt-1">
+                        <h3 className="text-3xl font-bold text-white">Inventario Reciente</h3>
+                        <p className="text-gray-400 mt-1">
                             {loading ? 'Cargando autos...' : `${filteredCars.length} autos disponibles para entrega inmediata`}
                         </p>
                     </div>
@@ -186,7 +227,7 @@ const CarDealerLanding = () => {
                         {filteredCars.map(car => (
                             <div
                                 key={car.id}
-                                className={`bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-xl transition-all duration-300 group ${car.status === 'sold' ? 'opacity-75 pointer-events-none' : 'cursor-pointer'}`}
+                                className={`bg-slate-800 rounded-2xl shadow-lg border border-slate-700 overflow-hidden hover:border-yellow-400/50 hover:shadow-xl transition-all duration-300 group ${car.status === 'sold' ? 'opacity-75 pointer-events-none' : 'cursor-pointer'}`}
                                 onClick={() => handleCarClick(car)}
                             >
                                 <div className="relative aspect-[4/3] overflow-hidden">
@@ -204,7 +245,7 @@ const CarDealerLanding = () => {
                                         </div>
                                     )}
                                     {car.status === 'available' && (
-                                        <div className="absolute top-4 right-4 bg-green-500 text-white text-xs font-bold px-2 py-1 rounded shadow-md">
+                                        <div className="absolute top-4 right-4 bg-yellow-400 text-black text-xs font-bold px-3 py-1 rounded-full shadow-md">
                                             DISPONIBLE
                                         </div>
                                     )}
@@ -213,22 +254,22 @@ const CarDealerLanding = () => {
                                 <div className="p-5">
                                     <div className="flex justify-between items-start mb-2">
                                         <div>
-                                            <h4 className="text-2xl font-bold text-gray-900">{car.make} {car.model}</h4>
-                                            <p className="text-sm text-gray-500 font-medium">{car.year}</p>
+                                            <h4 className="text-2xl font-bold text-white">{car.make} {car.model}</h4>
+                                            <p className="text-sm text-gray-400 font-medium">{car.year}</p>
                                         </div>
                                         {car.price ? (
-                                            <div className="bg-blue-50 px-3 py-1 rounded-lg">
-                                                <p className="text-blue-900 font-bold">${Number(car.price).toLocaleString()}</p>
+                                            <div className="bg-slate-700 px-3 py-1 rounded-lg">
+                                                <p className="text-white font-bold">${Number(car.price).toLocaleString()}</p>
                                             </div>
                                         ) : null}
                                     </div>
 
-                                    <div className="flex justify-between items-center text-sm text-gray-600 mt-4 pt-4 border-t border-gray-100">
+                                    <div className="flex justify-between items-center text-sm text-gray-400 mt-4 pt-4 border-t border-slate-700">
                                         <div className="flex items-center gap-1">
-                                            <Gauge className="w-4 h-4 text-blue-500" />
+                                            <Gauge className="w-4 h-4 text-yellow-400" />
                                             <span>{Number(car.miles).toLocaleString()} mi</span>
                                         </div>
-                                        <div className="flex items-center gap-1 font-semibold text-green-600">
+                                        <div className="flex items-center gap-1 font-semibold text-yellow-400">
                                             <DollarSign className="w-4 h-4" />
                                             <span>Inicial: ${Number(car.down_payment || 1500).toLocaleString()}</span>
                                         </div>
@@ -239,7 +280,7 @@ const CarDealerLanding = () => {
                                             e.stopPropagation();
                                             handleWhatsAppClick(car);
                                         }}
-                                        className="w-full mt-4 bg-green-500 hover:bg-green-600 text-white font-bold py-3 rounded-xl transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 transform active:scale-95"
+                                        className="w-full mt-4 bg-yellow-500 hover:bg-yellow-400 text-black font-bold py-3 rounded-xl transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 transform active:scale-95"
                                     >
                                         <Phone className="w-4 h-4" />
                                         Consultar más info
@@ -359,15 +400,18 @@ const CarDealerLanding = () => {
             </section>
 
             {/* FOOTER */}
-            <footer className="bg-blue-900 text-white py-16">
+            <footer className="bg-slate-950 text-white py-16 border-t border-slate-800">
                 <div className="container mx-auto px-4">
                     <div className="grid md:grid-cols-4 gap-12 mb-12">
                         <div className="col-span-1 md:col-span-2">
                             <div className="flex items-center space-x-2 mb-6">
-                                <Car className="text-blue-400 w-8 h-8" />
-                                <h2 className="text-2xl font-bold tracking-tight">MIAMI<span className="text-blue-400">AUTO</span></h2>
+                                <Car className="text-yellow-400 w-8 h-8" />
+                                <h2 className="text-2xl font-bold tracking-tight">
+                                    <span className="text-white">AutoFácil</span>
+                                    <span className="text-yellow-400"> Miami</span>
+                                </h2>
                             </div>
-                            <p className="text-blue-200 max-w-md mb-6 leading-relaxed">
+                            <p className="text-gray-400 max-w-md mb-6 leading-relaxed">
                                 Tu concesionario de confianza en Miami. Especialistas en ayudar a la comunidad latina a conseguir el auto de sus sueños, sin complicaciones y con total transparencia.
                             </p>
                             <div className="flex gap-4">
@@ -375,7 +419,7 @@ const CarDealerLanding = () => {
                                     { icon: <Phone className="w-5 h-5" />, text: "+58 412 679 6865" },
                                     { icon: <MapPin className="w-5 h-5" />, text: "Miami, FL" }
                                 ].map((contact, i) => (
-                                    <div key={i} className="flex items-center gap-2 text-blue-200 bg-blue-800/50 px-4 py-2 rounded-lg">
+                                    <div key={i} className="flex items-center gap-2 text-gray-400 bg-slate-800/50 px-4 py-2 rounded-lg">
                                         {contact.icon}
                                         <span className="text-sm font-medium">{contact.text}</span>
                                     </div>
@@ -384,8 +428,8 @@ const CarDealerLanding = () => {
                         </div>
 
                         <div>
-                            <h3 className="font-bold text-lg mb-6 text-blue-100">Enlaces Rápidos</h3>
-                            <ul className="space-y-4 text-blue-300">
+                            <h3 className="font-bold text-lg mb-6 text-yellow-400">Enlaces Rápidos</h3>
+                            <ul className="space-y-4 text-gray-400">
                                 <li><button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="hover:text-white transition-colors">Inicio</button></li>
                                 <li><button onClick={() => document.getElementById('inventory').scrollIntoView({ behavior: 'smooth' })} className="hover:text-white transition-colors">Inventario</button></li>
                                 <li><button onClick={() => document.getElementById('about').scrollIntoView({ behavior: 'smooth' })} className="hover:text-white transition-colors">Nosotros</button></li>
@@ -394,8 +438,8 @@ const CarDealerLanding = () => {
                         </div>
 
                         <div>
-                            <h3 className="font-bold text-lg mb-6 text-blue-100">Horario</h3>
-                            <ul className="space-y-4 text-blue-300">
+                            <h3 className="font-bold text-lg mb-6 text-yellow-400">Horario</h3>
+                            <ul className="space-y-4 text-gray-400">
                                 <li className="flex justify-between"><span>Lunes - Viernes</span> <span>9am - 7pm</span></li>
                                 <li className="flex justify-between"><span>Sábado</span> <span>10am - 6pm</span></li>
                                 <li className="flex justify-between"><span>Domingo</span> <span>Cita Previa</span></li>
@@ -403,8 +447,8 @@ const CarDealerLanding = () => {
                         </div>
                     </div>
 
-                    <div className="border-t border-blue-800 pt-8 flex flex-col md:flex-row justify-between items-center text-blue-400 text-sm">
-                        <p>&copy; {new Date().getFullYear()} Miami Auto. Todos los derechos reservados.</p>
+                    <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center text-gray-500 text-sm">
+                        <p>&copy; {new Date().getFullYear()} AutoFácil Miami. Todos los derechos reservados.</p>
                         <div className="flex items-center gap-6 mt-4 md:mt-0">
                             <a href="/carAdmin" className="hover:text-white transition-colors">Admin Login</a>
                             <span>Privacidad</span>
@@ -515,10 +559,14 @@ const CarDealerLanding = () => {
                 </div>
             )}
 
-            {/* FOOTER LINK FOR ADMIN (MOBILE) */}
-            <div className="fixed bottom-4 left-4 md:hidden z-50">
-
-            </div>
+            {/* FLOATING WHATSAPP BUTTON */}
+            <button
+                onClick={() => handleWhatsAppClick(null)}
+                className="fixed bottom-6 right-6 bg-green-500 hover:bg-green-600 text-white p-4 rounded-full shadow-2xl transition-all transform hover:scale-110 z-50 animate-bounce"
+                aria-label="WhatsApp"
+            >
+                <MessageCircle className="w-6 h-6" />
+            </button>
         </div>
     );
 };
